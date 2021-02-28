@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      picture {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 100px;
+      }
+
+      picture.is-small {
+        width: 50px;
+      }
+
+      picture.is-large {
+        width: 200px;
+      }
+      img {
+        box-shadow: 0 0 15px #999;
+        border-radius: 50%;
+        width: 100%;
+      }
+
+      img.disabled {
+        opacity: 0.3;
+      }
+
+      i {
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        min-height: 50px;
+        display: block;
+        width: 100%;
+      }
+      div {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        font-size: 24px;
+      }
+    </style>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <!-- Detecta el script que type tenga babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <h1>Women In Tech</h1>
+    <div id="app"></div>
+    <!-- Pasara por una tranformacion para que utilice jsx -->
+    <script type="text/babel">
+      // Se extraera un componente
+      const $app = document.getElementById("app");
+      //const h = React.createElement;  == NO se necesita por que tiene JSX
+      const useState = React.useState;
+      // params = props  == se pueden omitir los props y pasar los parametros, se pueden poner los nombres a componentes por default
+      const Avatar = ({ id, name = "Mujer", size }) => {
+        const [enabled, setEnabled] = useState(true); // Un array 0,1
+
+        const src = `https://randomuser.me/api/portraits/women/${id}.jpg`;
+
+        let pictureClassName = "";
+        if (size === "small") {
+          pictureClassName = "is-small";
+        } else if (size === "large") {
+          pictureClassName = "is-large";
+        }
+        //const pictureClassName = props.size === "small" ? "is-small" : "";
+        const imgClassName = enabled ? " " : "disabled";
+        return (
+          <picture className={pictureClassName}>
+            {id ? (
+              <img
+                onClick={() => {
+                  setEnabled(!enabled);
+                }}
+                //Cuando es un string se puede usar sin llaves
+                className={imgClassName}
+                // onClick={event => {
+                //   event.target.classList.toggle("disabled");
+                // }}
+                src={src}
+              />
+            ) : (
+              <i>Sin imagen</i>
+            )}
+
+            <strong>{enabled ? name : "Desactivada"}</strong>
+          </picture>
+        );
+      };
+
+      //REACT renderiza un elemento
+      function Contador() {
+        const [contadorValue, actualizarContador] = useState(33);
+        const [numeroDeVeces, actualizarVeces] = useState(0);
+
+        // let contadorState = useState(33);
+        // let contadorValue = contadorState[0];
+
+        // let actualizarContador = contadorState[1];
+        //--------------------------------------------
+        //React.Fragment renderiza sin el div
+        return (
+          <div>
+            <span>{contadorValue}</span>
+            <button
+              onClick={() => {
+                actualizarContador(contadorValue + 1);
+                actualizarVeces(numeroDeVeces + 1);
+              }}
+            >
+              Incrementar +
+            </button>
+
+            <button
+              onClick={() => {
+                actualizarContador(contadorValue - 1);
+                actualizarVeces(numeroDeVeces + 1);
+              }}
+            >
+              Decrementar -
+            </button>
+            <p>Veces utilizado {numeroDeVeces} </p>
+          </div>
+        );
+      }
+      // Forma antigua de llamar a los componentes por default
+      // Avatar.defaultProps = {
+      //   name: "Nombre desconocido",
+      // };
+      ////////-----------------------------
+      // h se utiliza para crear el elemento || avatar -> decimos que renderizar
+      // $app -> donde queremos ubicarlo. || Se coloca el parametro , { id: 1 }
+      // ReactDOM.render(h(Avatar, { id: 1 }), $app);
+      ReactDOM.render(
+        <div>
+          <Contador />
+          <Avatar id={10} name='Ana' size='small' />
+          <Avatar id={11} name='JSXLADY' />
+          <Avatar id={21} name='Carola' size='large' />
+          <Avatar id={13} size='large' />
+          <Avatar />
+        </div>,
+        // h("div", null, [h(Avatar, { id: 1 }), h(Avatar, { id: 2 })]),
+        $app
+      );
+
+      /*
+       const Avatar = params => {
+         const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
+         return `
+         <picture>
+         <img src="${src}" />
+        <em> ${params.name} </em>
+       </picture>`;
+       };
+
+       //Renderizar los que queremos mostrar
+       $app.innerHTML += Avatar({ id: 1, name: "Andrea" });
+       $app.innerHTML += Avatar({ id: 6, name: "Manuela" });
+
+
+       */
+
+      /*$app
+        .querySelectorAll("img")
+        .forEach(img => {
+          img.addEventListener("click", () => {
+            img.classList.toggle("disabled");
+          });
+        });*/
+    </script>
+  </body>
+</html>

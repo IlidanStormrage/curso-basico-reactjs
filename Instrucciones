@@ -1,0 +1,48 @@
+---------------------------------------------------------------------
+https://www.youtube.com/watch?v=T_j60n1zgu0
+🎥 SEGMENTOS:
+00:00​ - Bienvenida y saludos
+03:28​ - ¿Prefieres Vue o React?
+04:00​ - ¿Qué es React?
+06:40​ - Declarativo vs. Imperativo. El ejemplo del sushi.
+07:25​ - React está basado en componentes
+11:00​ - ¿Por qué React es tan estable en su desarrollo?
+12:10​ - npm trends: React vs Angular vs Vue
+17:30​ - Creando un componente Avatar con HTML puro
+20:58​ - Creando el componente Avatar con Vanila Javascript.
+32:30​ - Empezando a usar React sin Webpack y sin JSX
+37:10​ - Usando ReactDOM
+40:58​ - El parámetro children y por qué usamos JSX
+43:10​ - Usando babel al vuelo
+44:10​ - La transpilación de JSX
+50:40​ - Props para eventos: onClick
+53:55​ - Los parámetros de un componente son las props
+55:25​ - El estado de los componentes con useState
+59:05​ - Renderizado condicional declarativo
+01:01:30​ - DOM Virtual y cambios mínimos
+01:04:42​ - Arrow function (función flecha)
+01:05:05​ - Componente reusable con diferentes tamaños
+01:09:24​ - Props con valores por defect: defaultProps
+01:13:25​ - Renderizado condicional en el render
+01:22:39​ - Usa PascalCase para los componentes de React
+01:24:20​ - useState explicado paso a paso
+01:37:20​ - Mi opinión sobre tener el estado en una Global Store
+01:38:33​ - Últimas preguntas y agradecimientos
+---------------------------------------------------------------------
+
+Para escoger un AVATAR en la web randomuser
+es.reactjs.org
+- paquetes:
+angular core
+
+No se necesita WEBPACK para utilizar REACTjs
+     // Abajo de Head
+      <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>  
+      <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+      Se coloca link de babel
+       <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    En los scripts se coloca type="text/babel"
+
+
+    53:17
